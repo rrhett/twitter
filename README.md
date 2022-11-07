@@ -49,6 +49,16 @@ First, we need to add all of the ids from the previous step into the `idsToAdd` 
 script. There are lots of ways to do this. When I did it, I used vim and a lot of vim tricks. TODO: add some help
 to this repository. 
 
+It should look like:
+
+```
+idsToAdd=()
+idsToAdd+=("1234")
+idsToAdd+=("5678")
+```
+
+with one line for each of the ids returned from the previous step.
+
 Second, once we've added all those ids, you need to get a bearer token.
 
 Go to https://oauth-playground.glitch.me/?id=listAddMember
