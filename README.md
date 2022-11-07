@@ -41,7 +41,7 @@ are done.
 
 Save the output of each response somewhere.
 
-## Add your follows to a your list!
+## Add your follows to your list!
 
 This is the complicated step, and there are two sub steps.
 
