@@ -7,8 +7,8 @@ editing a shell script and running it, at least for now.
 
 ## Create a private list
 
-Go go Twitter and click Lists in the left and create a new list (e.g. "My Follows"). Make sure you make it private
-if you don't want others knowing you're adding to the list.
+Go to Twitter and click Lists in the left and create a new list (e.g. "My Follows"). Make sure you make it private
+if you don't want others knowing you're adding them to the list.
 
 Click on the list and look at the URL. The last part of it should be a number. Copy that and
 open up `follows_to_list.sh` and add it to the `LIST=` line (with no spaces).
@@ -19,7 +19,7 @@ Go to https://oauth-playground.glitch.me/?id=findUsersByUsername and enter your 
 in the usernames box and click Run. You will probably have to grant the Twitter API Playground
 app some permission to do this, and it'll take you back to this page, and you'll click Run again.
 
-The retunred value will be some JSON and in there will be a line like
+The returned value will be some JSON and in there will be a line like
 
 ```
       "id": "1234",
