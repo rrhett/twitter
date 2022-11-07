@@ -9,7 +9,6 @@ for i in ${!idsToAdd[@]}; do
   if [[ $i -ge $start && $i -lt $end ]]
   then
     echo "Going to add id ${idsToAdd[$i]}"
-    continue
     curl \
       -X POST \
       -H "Content-type: application/json" \
