@@ -59,9 +59,9 @@ idsToAdd+=("5678")
 
 with one line for each of the ids returned from the previous step.
 
-Second, once we've added all those ids, you need to get a bearer token.
+Second, once we've added all those ids, you need to get the proper cURL to insert into your script.
 
-Go to https://oauth-playground.glitch.me/?id=listAddMember
+Go to https://oauth-playground.glitch.me/?id=listAddMember and open the debug console.
 
 Add your list id at the top from the first step. For request body, use:
 
@@ -82,12 +82,26 @@ You should see a response that looks like
 }
 ```
 
-Next, click the little three dots/circles above that on the right. That opens a "Details" panel.
+At this point, in the network panel of the debug panel, you should see a request entitled `request`. Right click
+that and click Copy > Copy as cURL.
 
-Click "Include access token" and copy the whole string after "Authorization: Bearer: in the cURL request.
+Open the `follows_to_list.sh` script and paste the copied cURL command. Next, you need to replace one line.
 
-Paste that string in the `follows_to_list.sh` script after TOKEN= (no spaces).
+Find the line that starst with `--data-raw` and replace it with the following:
+
+```
+      --data-raw "{\"url\":\"https://api.twitter.com/2/lists/${LIST}/members\",\"method\":\"POST\",\"body\":\"{\\\"user_id\\\":\\\"${idsToAdd[$i]}\\\"}\"}" \
+```
+
 
 Now you should be good to go. Open up the script and edit the line that says `start=` each time you run it to add 60
 at a time (0, 60, 120, 180, etc) until you've added them all. Twitter throttles the requests at some rate (might be 60 per 3 minutes)
 so you'll have to be patient and baby sit this. Or edit the script with some sleeps, etc. TODO: make this nicer.
+
+Keep an eye on the output. If it shows `"is_member":"true"` you're good. If you see something about throttling, hit ctrl+c and wait a bit to restart.
+
+When you restart the script, you can look at the last successful id (or the first failed) and update your `start=` line to the first failed (or
+last successful +1) id to keep going.
+
+If you restart due to throttling, you may need to delete the cURL you pasted and go through the process of going to the oauth playground
+and getting a new cURL copied to get a new token.
